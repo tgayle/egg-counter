@@ -32,9 +32,9 @@
       bg-purple-500
       text-white
       flex flex-col
-      w-full
       items-center
-      h-full
+      w-screen
+      h-screen
       transition-all
       duration-300
     "
@@ -42,8 +42,8 @@
     <h1 class="text-3xl text-center p-4">The Egg</h1>
 
     <iframe
-      width="560"
-      height="315"
+      class="lg:w-1/2 max-w-8xl md:w-3/4"  
+      style="aspect-ratio: 16 / 9;"
       src="https://www.youtube.com/embed/h6fcK_fRYaI"
       title="The Egg."
       frameborder="0"
@@ -51,16 +51,17 @@
       allowfullscreen
     ></iframe>
 
-    <div class="flex flex-col mt-2">
+    <div class="flex-grow"></div>
+
+    <div class="flex flex-col m-4">
       <p>I have watched the egg:</p>
-      <button id="count" class="border rounded-md h-8 mt-4"></button>
+      <button id="count" class="border rounded-md h-8 mt-2"></button>
     </div>
 
-    <button id="nightmode" title="night">
+    <button id="nightmode" title="night" class="absolute left-0 bottom-0 ml-3 mb-3 p-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         enable-background="new 0 0 24 24"
-        height="48px"
         viewBox="0 0 24 24"
         width="24px"
         class="fill-current"
