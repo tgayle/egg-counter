@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Document</title>
+  </head>
+  <body
+    class="
+      bg-purple-500
+      text-white
+      flex flex-col
+      w-full
+      items-center
+      h-full
+      transition-all
+      duration-300
+    "
+  >
+    <h1 class="text-3xl text-center p-4">The Egg</h1>
+
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/h6fcK_fRYaI"
+      title="The Egg."
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+    <div class="flex flex-col mt-2">
+      <p>I have watched the egg:</p>
+      <button id="count" class="border rounded-md h-8 mt-4"></button>
+    </div>
+
+    <button id="nightmode" title="night">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        enable-background="new 0 0 24 24"
+        height="48px"
+        viewBox="0 0 24 24"
+        width="24px"
+        class="fill-current"
+        id="nighticon"
+      >
+        <rect fill="none" height="24" width="24" />
+        <path
+          d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"
+        />
+      </svg>
+    </button>
+
+    <script>
+      const getCount = () => +localStorage["count"] || 0;
+
+      function load() {
+        const count = getCount();
+        window.count.innerText = `${count} time${count === 1 ? "" : "s"}`;
+      }
+
+      window.count.onclick = (event) => {
+        if (event.ctrlKey) {
+          localStorage["count"] = Math.max(0, getCount() - 1);
+        } else {
+          localStorage["count"] = getCount() + 1;
+        }
+
+        load();
+      };
+
+      load();
+
+      let nightOn = false;
+      const day = ["bg-purple-500", "text-white"];
+      const night = ["bg-gray-900", "text-white"];
+      window.nightmode.onclick = () => {
+        const old = nightOn ? night : day;
+        const newC = nightOn ? day : night;
+        old.forEach((dc) => document.body.classList.remove(dc));
+        newC.forEach((nc) => document.body.classList.add(nc));
+        nightOn = !nightOn;
+      };
+    </script>
+  </body>
+</html>
